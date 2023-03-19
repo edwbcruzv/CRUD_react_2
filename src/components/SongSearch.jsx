@@ -20,24 +20,26 @@ function SongSearch() {
       let songURL=`https://api.lyrics.ovh/v1/${artist}/${song}`
 
       setLoading(true)
+       
       const [artistRes,songRes]=await Promise.all([
         helperHTTP().get(artistURL),
         helperHTTP().get(songURL)
       ])
       console.log("artistRes:",artistRes,"songRes",songRes)
-      setLyric({letra:"aqui deberia de haber una letra, pero no hay"})
-      setBio(artistRes)
+      setLyric("aqui deberia de haber una letra, pero no hay")
+      setBio(artistRes.artists[0].strBiographyES)
 
       setLoading(false)
-
+      
     }
-
+    
     fetchData()
   }, [search])
   
+  console.log(lyric,bio)
 
   function handleSearch(data) {
-    console.log(data)
+    console.log("data:",data)
     setSearch(data)
   }
 
@@ -47,8 +49,12 @@ function SongSearch() {
       
 
       {loading&&<Loader/>}
+
       <SongForm handleSearch={handleSearch}/>
-      {/* <SongDetails search={search} lyric={lyric} bio={bio}/> */}
+
+      {search && lyric && bio &&
+        <SongDetails search={search} lyric={lyric} bio={bio}/>
+      }
       
     </div>
   )

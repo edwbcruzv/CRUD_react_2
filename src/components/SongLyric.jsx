@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function SongLyric(props) {
+function SongLyric({lyric}) {
   return (
-    <div>SongLyric</div>
+    <h3>{lyric}</h3>
   )
 }
 
-SongLyric.propTypes = {}
+SongLyric.propTypes = {
+  lyric:PropTypes.string.isRequired
+}
 
 export default SongLyric

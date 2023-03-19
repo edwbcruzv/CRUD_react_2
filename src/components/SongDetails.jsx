@@ -6,15 +6,15 @@ import PropTypes from 'prop-types'
 function SongDetails({search,lyric,bio}) {
   return (
     <div>
-      Song Details
-      <SongArtist/>
-      <SongLyric/>
+      <h1>{search.artist}  {search.song}</h1>
+      <SongArtist bio={bio}/>
+      <SongLyric lyric={lyric}/>
     </div>
   )
 }
 
 SongDetails.propTypes={
-  search:PropTypes.string.isRequired,
+  search:PropTypes.object.isRequired,
   lyric:PropTypes.string.isRequired,
   bio:PropTypes.string.isRequired
 }
